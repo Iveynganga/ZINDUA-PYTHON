@@ -1,5 +1,5 @@
 
-def find_highest_priced_product():
+def find_highest_priced_product(products):
 
  
 # Initial Dictionary
@@ -14,7 +14,7 @@ find_highest_priced_product(my_dict)
  
 # Finding the highest price
  
-print("Dictionary with highest price:")
+print("product with highest price:")
 print(my_dict)
  
  
