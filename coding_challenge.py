@@ -14,7 +14,6 @@ def replace_email_addresses(string, replacement):
     print(replace_email_addresses(string, "REPLACED"))
 
 
-
 phone_numbers = "(123) 456-7890, (111) 222-3333"
 pattern = r"(\(\d{3}\)\s\d{3}-\d{4}), (\(\d{3}\)\s\d{3}-\d{4})"
           
