@@ -1,29 +1,44 @@
 import random
-words = ['funny', 'absurd', 'buffalo', 'jackpot', 'uptown', 'scratch']
-correct_word = random.choice(words).upper()
-display_word = '_' * len(correct_word)
-turns = 6
-guess_letters = []
-while turns > 0:
-    guess = input('Guess a letter: ').upper()
-    if guess in guess_letters:
-        print('Oops! You have already guessed that letter.')
-        continue
-    guess_letters.append(guess)
-    if guess in correct_word:
-        print('Correct! The letter is part of the word.')
-        new_displayed_word = ''
-        for i in range(len(correct_word)):
-            if correct_word[i] == guess:
-                new_displayed_word += guess
-            else:
-                new_displayed_word += display_word[i]
-        display_word = new_displayed_word
-    else:
-        turns -= 1
-        print(f'Incorrect. {turns} turns remaining.')
-    if '_' not in display_word:
-        print('Congratulations! You won.')
-        break
-if turns == 0:
-    print('Sorry, you lost.')
+
+def choose_random_word(words):
+    return random.choice(words).upper()
+
+def display_initial_word(word):
+    return '_' * len(word)
+
+def display_current_word(correct_word, display_word):
+    return '',(correct_word, display_word)
+
+def play_hangman():
+    words = ['funny', 'absurd', 'buffalo', 'jackpot', 'uptown', 'scratch']
+    correct_word = choose_random_word(words)
+    display_word = display_initial_word(correct_word)
+    turns = 6
+    guess_letters = set()
+
+    while turns > 0:
+        guess = input('Guess a letter: ').upper()
+
+        if guess in guess_letters:
+            print('Oops! You have already guessed that letter.')
+            
+
+        guess_letters.add(guess)
+
+        if guess in correct_word:
+            print('Correct! The letter is part of the word.')
+            display_word = display_current_word(correct_word, display_word)
+        else:
+            turns -= 1
+            print(f'Incorrect. {turns} turns remaining.')
+
+        print(f'Word: {display_word}')
+
+        if '_' not in display_word:
+            print('Congratulations! You won.')
+            return
+
+    print(f'Sorry, you lost. The correct word was: {correct_word}')
+
+# Call the main function to play the game
+play_hangman()
